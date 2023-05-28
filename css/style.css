@@ -1,0 +1,151 @@
+:root {
+    --color-background: #544258;
+    --color-border-tile: #3b2a3f;
+    --color-circle: #ffd6ff;
+    --color-x: #ffd6ff;
+    --color-display: #3b2a3f;
+    --color-font-1: #ffd6ff;
+
+    --dasharray-circle: 160px;
+    --dasharray-x: 75px;
+}
+
+.game {
+    background-color: var(--color-background);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.display {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
+.current-player {
+    background-color: var(--color-display);
+    width: 350px;
+    height: 75%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.current-player-slider {
+    background-color: #544258;
+    height: 75%;
+    width: 45%;
+    position: absolute;
+    border-radius: 5px;
+    transition: all .45s ease;
+}
+
+.current-player.x .current-player-slider {
+    left: 10px;
+}
+
+.current-player.circle .current-player-slider {
+    left: calc((100% - 45%) - 10px);
+}
+
+.x-player, .circle-player {
+    height: 75%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: var(--color-font-1);
+    z-index: 2;
+}
+
+.board {
+    width: 100%;
+    height: 400px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.board :is(:nth-child(1), :nth-child(2), :nth-child(3)) {
+    border-top: none;
+}
+.board :is(:nth-child(1), :nth-child(4), :nth-child(7)) {
+    border-left: none;
+}
+.board :is(:nth-child(7), :nth-child(8), :nth-child(9)) {
+    border-bottom: none;
+}
+.board :is(:nth-child(9), :nth-child(6), :nth-child(3)) {
+    border-right: none;
+}
+
+.tile {
+    width: 100px;   
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-size: 100px;
+    cursor: pointer;
+    border: 5px solid var(--color-border-tile);
+}
+
+.tile svg {
+    width: 100px;
+    height: 100px;
+}
+
+.tile svg.circle {
+    transform: rotate(-0.25turn);
+}
+
+.tile svg circle {
+    fill: none;
+    stroke: var(--color-circle);
+    stroke-width: 7.5px;
+    stroke-dasharray: var(--dasharray-circle);
+    stroke-dashoffset: var(--dasharray-circle);
+    transition: stroke-dashoffset .2s;
+}
+
+.tile svg line {
+    stroke: var(--color-x);
+    stroke-width: 7.5px;
+    stroke-dasharray: var(--dasharray-x);
+    stroke-dashoffset: var(--dasharray-x);
+    transition: stroke-dashoffset .2s;
+}
+
+.display-none {
+    display: none;
+}
+
+/* CustomAlerts */
+.swal-title {
+    font-size: 50px;
+}
+
+.swal-text {
+    font-size: 20px;
+}
+
+.swal-button {
+    padding: 7px 20px;
+    border-radius: 5px;
+    background-color: var(--color-background);
+    font-size: 20px;
+    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.3);
+}
